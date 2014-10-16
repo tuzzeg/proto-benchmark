@@ -1,0 +1,13 @@
+package ints;
+
+message Ints1 {
+  required int32 i1 = 1;
+  required int64 i2 = 2;
+  required uint32 i3 = 3;
+  required uint64 i4 = 4;
+
+  optional int32 i5 = 5;
+  optional int64 i6 = 6;
+  optional uint32 i7 = 7;
+  optional uint64 i8 = 8;
+}

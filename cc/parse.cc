@@ -78,7 +78,7 @@ int main(int argc, char* argv[]) {
   }
 
   const chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
-  const unsigned long ms = chrono::duration_cast<std::chrono::microseconds>(t1-t0).count();
+  const unsigned long ms = chrono::duration_cast<std::chrono::milliseconds>(t1-t0).count();
 
-  printf("{\"library\": \"protobuf-c\", \"count\": %lu, \"time-millis\": %lu}\n", args.repeats*raw_protos.size(), ms);
+  printf("{\"library\": \"protobuf-c\", \"file\": \"%s\", \"count\": %lu, \"time-millis\": %lu}\n", args.file, args.repeats, ms);
 }

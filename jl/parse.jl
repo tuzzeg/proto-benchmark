@@ -44,9 +44,33 @@ function parse_protos{T}(protos::Array{Array{Uint8,1},1}, ::Type{T})
   end
 end
 
+immutable Args
+  file::String
+  repeats::Int
+end
+
+function parse_args()
+  file = ""
+  repeats = 1
+
+  for i in 1:length(ARGS)
+    if ARGS[i] == "--count"
+      i += 1
+      repeats = int(ARGS[i])
+    elseif ARGS[i] == "--file"
+      i += 1
+      file = ARGS[i]
+    end
+  end
+
+  Args(file, repeats)
+end
+
 function main()
-  file = "d/ints/ints.Ints1.100.pb"
-  repeats = 1000
+  args = parse_args()
+  file = args.file
+  repeats = args.repeats
+
   raw_protos = read_file(file)
 
   ms = @timeit repeats parse_protos(raw_protos, ints.Ints1)
